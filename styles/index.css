@@ -128,6 +128,22 @@ h3 {
       text-align: center;
     }
   }
+
+  & button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font: var(--label-md);
+    color: var(--content-primary);
+    background-color: var(--background-tertiary);
+    padding: 16px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 40px;
+  }
 }
 
 #questions {
