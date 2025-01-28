@@ -18,12 +18,14 @@
   --accent-red: #e9a9b3;
 
   --gradient-border: linear-gradient(
-      #77c0af 0%,
-      #d1dc97 14.84%,
-      #e9a9b3 32.15%,
-      #d586e0 65.79%
-    ),
-    #91a1fa 84.58%;
+    90deg,
+    #77c0af 0%,
+    #d1dc97 14.84%,
+    #e9a9b3 32.15%,
+    #d586e0 65.79%,
+    #91a1fa 84.58%
+  );
+
   --gradient-background: linear-gradient(#d586e0 0%, #91a1fa 98.93%);
   --gradient-content: linear-gradient(#c7c9cc 0%, #3d3d3d 100%);
 
@@ -110,10 +112,10 @@ h3 {
     width: 319px;
   }
 
-  & .input {
+  & .number-field {
     display: flex;
     gap: 8px;
-    flex-direction: column;
+    flex-direction: column-reverse;
 
     & label {
       text-transform: uppercase;
@@ -131,7 +133,29 @@ h3 {
       border: 1px solid #111012;
       width: 86px;
       text-align: center;
+      border-radius: 8px;
+      border: 2px solid transparent;
     }
+  }
+
+  & .number-field:hover {
+    & label {
+      color: var(--content-brand);
+    }
+
+    & input {
+      border: 1px solid transparent;
+      border-image: var(--gradient-border) 1;
+    }
+  }
+
+  & .number-field input:focus-within {
+    border: 2px solid transparent;
+    border-image: var(--gradient-border) 1;
+  }
+
+  & .number-field input:focus-within ~ label {
+    color: var(--content-brand);
   }
 
   & button {
@@ -191,9 +215,9 @@ h3 {
 
   & .switch {
     position: relative;
-    width: 60px;
-    height: 34px;
-    border-radius: 34px;
+    width: 40px;
+    height: 24px;
+    border-radius: 24px;
     background-color: var(--content-tertiary);
     cursor: pointer;
 
@@ -205,9 +229,9 @@ h3 {
     }
 
     & input:checked + .slider {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
+      -webkit-transform: translateX(14px);
+      -ms-transform: translateX(14px);
+      transform: translateX(14px);
       background-color: white;
     }
 
@@ -218,11 +242,11 @@ h3 {
 
   & .slider {
     position: absolute;
-    top: 4px;
+    top: 3px;
     left: 4px;
     background-color: var(--content-primary);
-    height: 26px;
-    width: 26px;
+    height: 18px;
+    width: 18px;
     border-radius: 50%;
     -webkit-transition: 0.4s;
     transition: 0.4s;
