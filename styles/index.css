@@ -133,7 +133,6 @@ h3 {
       border: 1px solid #111012;
       width: 86px;
       text-align: center;
-      border-radius: 8px;
       border: 2px solid transparent;
     }
   }
@@ -168,10 +167,18 @@ h3 {
     color: var(--content-primary);
     background-color: var(--background-tertiary);
     padding: 16px;
-    border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
     margin-top: 40px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    &:hover {
+      animation: animated-border 5s;
+
+      & img {
+        animation: animated-arrow 5s backwards;
+      }
+    }
   }
 }
 
@@ -250,5 +257,76 @@ h3 {
     border-radius: 50%;
     -webkit-transition: 0.4s;
     transition: 0.4s;
+  }
+}
+
+@keyframes animated-border {
+  0% {
+    border-image: linear-gradient(
+        -40deg,
+        #77c0af 0%,
+        #d1dc97 15%,
+        #e9a9b3 32%,
+        #d586e0 67%,
+        #91a1fa 86%
+      )
+      1;
+  }
+
+  20% {
+    border-image: linear-gradient(
+        #77c0af 0%,
+        #d1dc97 15%,
+        #e9a9b3 32%,
+        #d586e0 67%,
+        #91a1fa 86%
+      )
+      1;
+  }
+
+  40% {
+    border-image: linear-gradient(
+        40deg,
+        #77c0af 0%,
+        #d1dc97 15%,
+        #e9a9b3 32%,
+        #d586e0 67%,
+        #91a1fa 86%
+      )
+      1;
+  }
+
+  60% {
+    border-image: linear-gradient(
+        -20deg,
+        #77c0af 0%,
+        #d1dc97 15%,
+        #e9a9b3 32%,
+        #d586e0 67%,
+        #91a1fa 86%
+      )
+      1;
+  }
+
+  80% {
+    border-image: linear-gradient(
+        -10deg,
+        #77c0af 0%,
+        #d1dc97 15%,
+        #e9a9b3 32%,
+        #d586e0 67%,
+        #91a1fa 86%
+      )
+      1;
+  }
+}
+
+@keyframes animated-arrow {
+  50% {
+    transform: translateX(40px);
+  }
+
+  100% {
+    transform: translateX(0px);
   }
 }
