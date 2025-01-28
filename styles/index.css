@@ -67,6 +67,7 @@ body {
 
 header {
   margin-top: 46px;
+  margin-bottom: 42px;
 }
 
 h1 {
@@ -88,9 +89,6 @@ h3 {
 }
 
 #content-form {
-  margin-top: 42px;
-  margin-bottom: 80px;
-
   & .title-form {
     margin-bottom: 40px;
 
@@ -183,6 +181,8 @@ h3 {
 }
 
 #questions {
+  margin-top: 80px;
+
   & .item {
     display: flex;
     gap: 8px;
@@ -260,6 +260,55 @@ h3 {
   }
 }
 
+#result {
+  & h2 {
+    font: var(--label-md);
+    color: var(--content-primary);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  & p {
+    font: var(--overline);
+    color: var(--content-secondary);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
+
+.random-number-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.random-number {
+  margin-inline: auto;
+  font: 700 64px/150% var(--ff-roboto-mono);
+  color: var(--content-brand);
+  text-align: center;
+  position: relative;
+  width: 100px;
+  height: 100px;
+
+  & span {
+    opacity: 0;
+    animation: animated-number-span 5s forwards;
+  }
+}
+
+.random-number::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--content-brand);
+  border-radius: 28px;
+  scale: 0;
+  animation: animated-number-bg 5s forwards;
+}
+
 @keyframes animated-border {
   0% {
     border-image: linear-gradient(
@@ -331,6 +380,34 @@ h3 {
   }
 }
 
+@keyframes animated-number-bg {
+  25% {
+    scale: 1;
+  }
+
+  50% {
+    transform: rotate(180deg);
+    scale: 1;
+  }
+
+  70% {
+    transform: rotate(180deg);
+    scale: 0;
+  }
+}
+
+@keyframes animated-number-span {
+  50% {
+    opacity: 1;
+    color: var(--color-inverse);
+  }
+
+  100% {
+    opacity: 1;
+    color: var(--content-brand);
+  }
+}
+
 @media (width >= 80rem) {
   body {
     max-width: 1098px;
@@ -366,6 +443,7 @@ h3 {
   #questions {
     grid-area: questions;
     align-self: end;
+    margin: 0;
   }
 
   #content-form {
