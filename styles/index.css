@@ -330,3 +330,53 @@ h3 {
     transform: translateX(0px);
   }
 }
+
+@media (width >= 80rem) {
+  body {
+    max-width: 1098px;
+    margin-inline: auto;
+  }
+
+  h1 {
+    font: var(--display-lg);
+  }
+
+  #logo {
+    display: inline-block;
+    margin-right: auto;
+    margin-bottom: 89px;
+  }
+
+  .container {
+    display: grid;
+    grid-template-areas:
+      "header form"
+      "questions form";
+    column-gap: 108px;
+    row-gap: 38px;
+    justify-content: center;
+  }
+
+  header {
+    grid-area: header;
+    align-self: start;
+    margin: 0;
+  }
+
+  #questions {
+    grid-area: questions;
+    align-self: end;
+  }
+
+  #content-form {
+    margin: 0;
+    grid-area: form;
+    align-self: center;
+  }
+
+  #questions {
+    & .item {
+      max-width: 386px;
+    }
+  }
+}
