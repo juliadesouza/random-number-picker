@@ -6,7 +6,7 @@ const toggle = document.getElementById("switch");
 
 form.onsubmit = (e) => {
   e.preventDefault();
-  const numbers = getRandomNumbers();
+  getRandomNumbers();
 };
 
 function getRandomNumbers() {
@@ -39,8 +39,35 @@ function getRandomNumbers() {
       numbers.push(randomNumber);
     }
 
-    return numbers;
+    createCardsForNumber(numbers);
   } catch (error) {
     console.log(error);
   }
+}
+
+function createCardsForNumber(numbers) {
+  const formContainer = document.getElementById("content-form");
+  const resultContainer = document.getElementById("result");
+  formContainer.style.display = "none";
+  resultContainer.style.display = "block";
+
+  const cardsContainer = document.getElementById("cards-container");
+  cardsContainer.innerHTML = "";
+
+  let showBtn = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    const card = document.createElement("div");
+    card.classList.add("random-number");
+    card.style.setProperty("--delay", `${i * 3}s`);
+
+    const span = document.createElement("span");
+    span.textContent = numbers[i];
+
+    card.append(span);
+    cardsContainer.append(card);
+    showBtn += i * 4;
+  }
+
+  const repeatBtn = document.getElementById("repeat-btn");
+  repeatBtn.style.setProperty("--delay-show-btn", `${showBtn}s`);
 }

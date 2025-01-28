@@ -261,6 +261,8 @@ h3 {
 }
 
 #result {
+  display: none;
+
   & h2 {
     font: var(--label-md);
     color: var(--content-primary);
@@ -274,26 +276,56 @@ h3 {
     text-align: center;
     margin-bottom: 40px;
   }
+
+  & button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font: var(--label-md);
+    color: var(--content-primary);
+    background-color: var(--background-tertiary);
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 40px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0;
+    animation: show-button 1s forwards var(--delay-show-btn);
+    &:hover {
+      animation: animated-border 5s;
+
+      & img {
+        animation: animated-repeat 3s linear infinite;
+      }
+    }
+  }
 }
 
 .random-number-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
 }
 
 .random-number {
-  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font: 700 64px/150% var(--ff-roboto-mono);
-  color: var(--content-brand);
   text-align: center;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 84px;
+  height: 84px;
 
   & span {
+    color: var(--content-brand);
     opacity: 0;
-    animation: animated-number-span 5s forwards;
+    animation: animated-number-span 5s forwards var(--delay);
   }
 }
 
@@ -306,7 +338,7 @@ h3 {
   background-color: var(--content-brand);
   border-radius: 28px;
   scale: 0;
-  animation: animated-number-bg 5s forwards;
+  animation: animated-number-bg 5s forwards var(--delay);
 }
 
 @keyframes animated-border {
@@ -380,6 +412,15 @@ h3 {
   }
 }
 
+@keyframes animated-repeat {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes animated-number-bg {
   25% {
     scale: 1;
@@ -390,7 +431,7 @@ h3 {
     scale: 1;
   }
 
-  70% {
+  60% {
     transform: rotate(180deg);
     scale: 0;
   }
@@ -402,15 +443,28 @@ h3 {
     color: var(--color-inverse);
   }
 
+  90% {
+    opacity: 1;
+    color: var(--content-brand);
+    font-size: 48px;
+  }
+
   100% {
     opacity: 1;
     color: var(--content-brand);
+    font-size: 48px;
+  }
+}
+
+@keyframes show-button {
+  to {
+    opacity: 1;
   }
 }
 
 @media (width >= 80rem) {
   body {
-    max-width: 1098px;
+    max-width: 1200px;
     margin-inline: auto;
   }
 
@@ -426,6 +480,7 @@ h3 {
 
   .container {
     display: grid;
+    grid-template-columns: 1fr 480px;
     grid-template-areas:
       "header form"
       "questions form";
@@ -444,17 +499,16 @@ h3 {
     grid-area: questions;
     align-self: end;
     margin: 0;
-  }
 
-  #content-form {
-    margin: 0;
-    grid-area: form;
-    align-self: center;
-  }
-
-  #questions {
     & .item {
       max-width: 386px;
     }
+  }
+
+  #content-form,
+  #result {
+    margin: 0;
+    grid-area: form;
+    align-self: center;
   }
 }
