@@ -3,10 +3,21 @@ const quantity = document.getElementById("quantity");
 const start = document.getElementById("start");
 const end = document.getElementById("end");
 const toggle = document.getElementById("switch");
+const formContainer = document.getElementById("content-form");
+const resultContainer = document.getElementById("result");
+const cardsContainer = document.getElementById("cards-container");
+const repeatBtn = document.getElementById("repeat-btn");
+const spanOfResults = document.getElementById("num-results");
+let numberOfResults = 0;
 
 form.onsubmit = (e) => {
   e.preventDefault();
   getRandomNumbers();
+};
+
+repeatBtn.onclick = () => {
+  resultContainer.style.display = "none";
+  formContainer.style.display = "block";
 };
 
 function getRandomNumbers() {
@@ -46,15 +57,10 @@ function getRandomNumbers() {
 }
 
 function createCardsForNumber(numbers) {
-  const formContainer = document.getElementById("content-form");
-  const resultContainer = document.getElementById("result");
   formContainer.style.display = "none";
   resultContainer.style.display = "block";
-
-  const cardsContainer = document.getElementById("cards-container");
   cardsContainer.innerHTML = "";
-
-  let showBtn = 0;
+  spanOfResults.textContent = ++numberOfResults;
   for (let i = 0; i < numbers.length; i++) {
     const card = document.createElement("div");
     card.classList.add("random-number");
@@ -65,9 +71,7 @@ function createCardsForNumber(numbers) {
 
     card.append(span);
     cardsContainer.append(card);
-    showBtn += i * 4;
   }
 
-  const repeatBtn = document.getElementById("repeat-btn");
-  repeatBtn.style.setProperty("--delay-show-btn", `${showBtn}s`);
+  repeatBtn.style.setProperty("--delay-show-btn", `${numbers.length * 3}s`);
 }

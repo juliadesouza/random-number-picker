@@ -293,13 +293,18 @@ h3 {
     cursor: pointer;
     border: 2px solid transparent;
     opacity: 0;
-    animation: show-button 1s forwards var(--delay-show-btn);
-    &:hover {
-      animation: animated-border 5s;
+    animation: show-button 1s both var(--delay-show-btn);
 
-      & img {
-        animation: animated-repeat 3s linear infinite;
-      }
+    &:hover {
+      border-image: linear-gradient(
+          -40deg,
+          #77c0af 0%,
+          #d1dc97 15%,
+          #e9a9b3 32%,
+          #d586e0 67%,
+          #91a1fa 86%
+        )
+        1;
     }
   }
 }
@@ -363,6 +368,7 @@ h3 {
         #91a1fa 86%
       )
       1;
+    opacity: 1;
   }
 
   40% {
